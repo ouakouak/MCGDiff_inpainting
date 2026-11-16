@@ -1,0 +1,57 @@
+
+[project]
+name = "mcgdiff-inpainting"
+version = "0.1.0"
+description = "MCGDiff implementation using Sequential Monte Carlo for Bayesian image inpainting"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    # Diffusion model
+    "torch>=2.2",
+    "torchvision",
+    "diffusers>=0.30",
+    "transformers",
+    "huggingface-hub",
+    "safetensors",
+
+    # Sequential Monte Carlo (Nicolas Chopin)
+    "particles",
+
+    # Scientific computing
+    "numpy",
+    "scipy",
+
+    # Image processing and visualization
+    "pillow",
+    "matplotlib",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+notebooks = [
+    "jupyterlab",
+    "ipykernel",
+    "pandas",
+    "seaborn",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcgdiff_inpainting"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
